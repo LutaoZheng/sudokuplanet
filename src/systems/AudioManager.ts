@@ -1,0 +1,4 @@
+import Phaser from 'phaser'; import { PlayerManager } from './PlayerManager';
+export type SoundEffect='click'|'correct'|'wrong'|'unitComplete'|'levelComplete'|'coin'|'levelUp';
+const assetKeys:Record<SoundEffect,string>={click:'sfx-click',correct:'sfx-correct',wrong:'sfx-wrong',unitComplete:'sfx-unit-complete',levelComplete:'sfx-level-complete',coin:'sfx-coin',levelUp:'sfx-level-up'};
+export class AudioManager {static readonly instance=new AudioManager();play(scene:Phaser.Scene,effect:SoundEffect){if(!PlayerManager.instance.data.settings.sound)return;const key=assetKeys[effect];if(scene.cache.audio.exists(key))scene.sound.play(key,{volume:.55});}setSound(enabled:boolean){PlayerManager.instance.data.settings.sound=enabled;PlayerManager.instance.save();}setMusic(enabled:boolean){PlayerManager.instance.data.settings.music=enabled;PlayerManager.instance.save();}}

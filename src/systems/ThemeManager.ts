@@ -1,0 +1,2 @@
+import { GAME_THEMES,type GameThemeConfig } from '../data/themes'; import { ShopManager } from './ShopManager';
+export class ThemeManager {static readonly instance=new ThemeManager();get current():GameThemeConfig{return GAME_THEMES[ShopManager.instance.data.selectedBoardTheme]??GAME_THEMES.default;}get playerNumberColor(){return ShopManager.instance.data.selectedNumberSkin==='numbers_ink'?0x34313a:this.current.playerNumber;}}

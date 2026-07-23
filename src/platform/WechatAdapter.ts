@@ -1,0 +1,4 @@
+interface WechatStorage {getStorageSync?(key:string):unknown;setStorageSync?(key:string,value:unknown):void;vibrateShort?(options:{type:'light'|'medium'|'heavy'}):void;shareAppMessage?(options:{title:string}):void;}
+const getWx=()=>{const scope=globalThis as typeof globalThis&{wx?:WechatStorage};return scope.wx;};
+export interface RewardedAdResult {completed:boolean;}
+export class WechatAdapter {static get isWechat(){return getWx()!==undefined;}static storage={get:(key:string)=>{const wx=getWx();return wx?.getStorageSync?wx.getStorageSync(key):localStorage.getItem(key);},set:(key:string,value:unknown)=>{const wx=getWx();if(wx?.setStorageSync)wx.setStorageSync(key,value);else localStorage.setItem(key,String(value));}};static vibrate(){getWx()?.vibrateShort?.({type:'light'});}static async showRewardedAd(_placement:'hint'|'revive'|'double_reward'):Promise<RewardedAdResult>{return{completed:false};}static share(){getWx()?.shareAppMessage?.({title:'来数独星球挑战你的脑力！'});}}

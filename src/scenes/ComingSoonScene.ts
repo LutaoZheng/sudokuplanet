@@ -1,0 +1,2 @@
+import Phaser from 'phaser'; import { addBackground,addHeader } from '../ui/layout'; import { COLORS,FONT,hex } from '../ui/theme';
+export class ComingSoonScene extends Phaser.Scene { constructor(){super('ComingSoon')} create(data:{title?:string}){addBackground(this);addHeader(this,data.title||'功能',()=>this.scene.start('Home'));this.add.text(210,340,'🚀',{fontSize:'64px'}).setOrigin(.5);this.add.text(210,425,'正在建设这颗星球…',{fontFamily:FONT,fontSize:'18px',color:hex(COLORS.text)}).setOrigin(.5);}}

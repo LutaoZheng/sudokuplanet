@@ -1,0 +1,19 @@
+{
+  "name": "sudoku-planet",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc --noEmit && vite build",
+    "verify:levels": "esbuild scripts/verify-levels.ts --bundle --platform=node --outfile=/tmp/sudoku-level-check.mjs && node /tmp/sudoku-level-check.mjs",
+    "verify:retention": "esbuild scripts/verify-retention.ts --bundle --platform=node --outfile=/tmp/sudoku-retention-check.mjs && node /tmp/sudoku-retention-check.mjs",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "phaser": "^3.90.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  }
+}
